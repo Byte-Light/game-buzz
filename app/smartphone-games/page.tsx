@@ -1,10 +1,11 @@
-import SmartphoneGames from '@/components/smartphone-game/SmartphoneGames';
+
+import AllSmartphoneGames from '@/components/smartphone-game/AllSmartphoneGames';
 import React from 'react';
 
 const SmartPhoneGamePage = () => {
     return (
         <div>
-            <SmartphoneGames />
+            <AllSmartphoneGames/>
         </div>
     );
 };

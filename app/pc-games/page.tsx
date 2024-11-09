@@ -1,10 +1,11 @@
-import PcGames from '@/components/pc-game/PcGames';
+
+import AllPcGames from '@/components/pc-game/AllPcGames';
 import React from 'react';
 
 const PcGamePage = () => {
     return (
         <div>
-            <PcGames />
+           <AllPcGames />
         </div>
     );
 };

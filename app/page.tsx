@@ -1,6 +1,6 @@
-import ConsoleGames from "@/components/console-game/ConsoleGames";
-import PcGames from "@/components/pc-game/PcGames";
-import SmartphoneGames from "@/components/smartphone-game/SmartphoneGames";
+import ConsoleGames from "@/components/home/ConsoleGames";
+import PcGames from "@/components/home/PcGames";
+import SmartphoneGames from "@/components/home/SmartphoneGames";
 
 export default function Home() {
   return (

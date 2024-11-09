@@ -1,10 +1,10 @@
-import ConsoleGames from '@/components/console-game/ConsoleGames';
+import AllConsoleGames from '@/components/console-game/AllConsoleGames';
 import React from 'react';
 
 const ConsoleGamePage = () => {
     return (
         <div>
-            <ConsoleGames />
+            <AllConsoleGames />
         </div>
     );
 };
