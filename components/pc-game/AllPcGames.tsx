@@ -1,10 +1,12 @@
 "use client"
 import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { games as allGames, Game } from '../../data/PcGamesData';
 
 const AllPcGames: React.FC = () => {
   const [page, setPage] = useState(1);
   const gamesPerPage = 6;
+  const router = useRouter();
 
   const startIndex = (page - 1) * gamesPerPage;
   const visibleGames = allGames.slice(startIndex, startIndex + gamesPerPage);
@@ -15,6 +17,10 @@ const AllPcGames: React.FC = () => {
 
   const prevPage = () => {
     setPage((prevPage) => Math.max(prevPage - 1, 1));
+  };
+
+  const handleShowMore = () => {
+    router.push('/details');
   };
 
   return (
@@ -28,7 +34,9 @@ const AllPcGames: React.FC = () => {
               <p className="text-sm text-gray-500 mt-1">Genre: {game.genre}</p>
               <p className="text-sm text-gray-500">Rating: {game.rating} / 5</p>
               <p className="mt-4 text-gray-700">{game.description}</p>
-              <button className="mt-6 px-4 py-2 bg-indigo-600 text-white rounded-full font-medium shadow-md hover:bg-indigo-700 transition-colors duration-300">
+              <button
+                   onClick={handleShowMore}
+                    className="mt-6 px-4 py-2 bg-indigo-600 text-white rounded-full font-medium shadow-md hover:bg-indigo-700 transition-colors duration-300">
                 Show More Details
               </button>
             </div>

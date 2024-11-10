@@ -1,4 +1,6 @@
+"use client"
 import React from 'react';
+import { useRouter } from 'next/navigation';
 
 type Game = {
   id: number;
@@ -54,6 +56,10 @@ const games: Game[] = [
 ];
 
 const ConsoleGames: React.FC = () => {
+  const router = useRouter();
+  const handleShowMore = () => {
+    router.push('/details');
+  };
   return (
     <div className="bg-gradient-to-b from-gray-50 to-gray-100 min-h-screen py-10">
       <div className="container mx-auto px-4">
@@ -69,6 +75,7 @@ const ConsoleGames: React.FC = () => {
               <p className="text-sm text-gray-500">Rating: {game.rating} / 5</p>
               <p className="mt-4 text-gray-700">{game.description}</p>
               <button
+                onClick={handleShowMore}
                 className="mt-6 px-4 py-2 bg-red-600 text-white rounded-full font-medium shadow-md hover:bg-red-700 transition-colors duration-300"
               >
                 Show More Details
