@@ -1,3 +1,36 @@
+# GameBuzz: Your Ultimate Gaming Hub
+
+**Discover the latest gaming news, reviews, and community discussions.**
+
+|
+
+**Update dbConfig**
+
+![Connect Database](public/images/connect.png)
+
+|
+
+**Result Preview:**
+
+![Result Preview](public/images/preview.png)
+
+**Features:**
+
+* **Breaking News:** Stay updated with the latest gaming announcements and releases.
+* **In-Depth Reviews:** Read expert opinions on the hottest games.
+* **Active Community:** Join discussions with fellow gamers and share your thoughts.
+* **Game Guides:** Find tips and strategies to master your favorite games.
+
+**Join the GameBuzz community today!**
+
+
+
+
+
+
+
+
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
