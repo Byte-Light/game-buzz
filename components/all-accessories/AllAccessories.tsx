@@ -3,45 +3,42 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 
-interface Game {
+interface Accessory {
   id: number;
-  game_name: string;
-  release_date: string;
-  developer: string;
-  publisher: string;
-  genre: string;
-  platform: string;
-  rating: number;
+  accessory_name: string;
+  category: string;
+  brand: string;
   price: number;
   image: string;
   description: string;
+  afflink: string;
 }
 
 const AllAccessories: React.FC = () => {
-  const [games, setGames] = useState<Game[]>([]);
+  const [accessories, setAccessories] = useState<Accessory[]>([]);
   const [page, setPage] = useState(1);
-  const gamesPerPage = 6;
+  const accessoriesPerPage = 6;
   const router = useRouter();
 
   useEffect(() => {
-    const fetchGames = async () => {
+    const fetchAccessories = async () => {
       try {
-        const response = await fetch('/api/smartphone-games');
+        const response = await fetch('/api/all-accessory');
         const data = await response.json();
-        setGames(data);
+        setAccessories(data);
       } catch (error) {
-        console.error('Failed to fetch smartphone games data:', error);
+        console.error('Failed to fetch accessories data:', error);
       }
     };
 
-    fetchGames();
+    fetchAccessories();
   }, []);
 
-  const startIndex = (page - 1) * gamesPerPage;
-  const visibleGames = games.slice(startIndex, startIndex + gamesPerPage);
+  const startIndex = (page - 1) * accessoriesPerPage;
+  const visibleAccessories = accessories.slice(startIndex, startIndex + accessoriesPerPage);
 
   const nextPage = () => {
-    if (startIndex + gamesPerPage < games.length) {
+    if (startIndex + accessoriesPerPage < accessories.length) {
       setPage((prevPage) => prevPage + 1);
     }
   };
@@ -50,8 +47,8 @@ const AllAccessories: React.FC = () => {
     setPage((prevPage) => Math.max(prevPage - 1, 1));
   };
 
-  const handleShowMore = () => {
-    router.push('/details');
+  const handleShowMore = (afflink: string) => {
+    router.push(afflink);
   };
 
   return (
@@ -59,21 +56,18 @@ const AllAccessories: React.FC = () => {
       <div className="container mx-auto px-4">
         <h2 className="text-4xl font-bold text-center mb-8 text-green-700">All Accessories</h2>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {visibleGames.map((game) => (
-            <div key={game.id} className="bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300 transform hover:scale-105">
-              <img src={game.image} alt={game.game_name} className="w-full h-48 object-cover rounded-lg mb-4" />
-              <h3 className="text-2xl font-semibold text-green-800">{game.game_name}</h3>
-              <p className="text-sm text-gray-500 mt-1">{game.description}</p>
-              <p className="text-sm text-gray-500 mt-1">Genre: {game.genre}</p>
-              <p className="text-sm text-gray-500">Rating: {game.rating} / 5</p>
-              <p className="text-sm text-gray-500">Platform: {game.platform}</p>
-              <p className="text-sm text-gray-500">Developer: {game.developer}</p>
-              <p className="text-sm text-gray-500">Publisher: {game.publisher}</p>
-              <p className="text-sm text-gray-500">Release Date: {game.release_date}</p>
-              <p className="text-sm text-gray-500">Price: ${Number(game.price).toFixed(2)}</p>
+          {visibleAccessories.map((accessory) => (
+            <div key={accessory.id} className="bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300 transform hover:scale-105">
+              <img src={accessory.image} alt={accessory.accessory_name} className="w-full h-48 object-cover rounded-lg mb-4" />
+              <h3 className="text-2xl font-semibold text-green-800">{accessory.accessory_name}</h3>
+              <p className="text-sm text-gray-500 mt-1">{accessory.description}</p>
+              <p className="text-sm text-gray-500">Category: {accessory.category}</p>
+              <p className="text-sm text-gray-500">Brand: {accessory.brand}</p>
+              <p className="text-sm text-gray-500">Price: ${Number(accessory.price).toFixed(2)}</p>
               <button
-                onClick={handleShowMore}
-                className="mt-6 px-4 py-2 bg-green-600 text-white rounded-full font-medium shadow-md hover:bg-green-700 transition-colors duration-300">
+                onClick={() => handleShowMore(accessory.afflink)}
+                className="mt-6 px-4 py-2 bg-green-600 text-white rounded-full font-medium shadow-md hover:bg-green-700 transition-colors duration-300"
+              >
                 Show More Details
               </button>
             </div>
@@ -91,9 +85,9 @@ const AllAccessories: React.FC = () => {
           </button>
           <button
             onClick={nextPage}
-            disabled={startIndex + gamesPerPage >= games.length}
+            disabled={startIndex + accessoriesPerPage >= accessories.length}
             className={`px-6 py-3 rounded-lg font-semibold shadow transition-colors duration-300 ${
-              startIndex + gamesPerPage >= games.length ? "bg-gray-400 text-white cursor-not-allowed" : "bg-green-600 text-white hover:bg-green-700"
+              startIndex + accessoriesPerPage >= accessories.length ? "bg-gray-400 text-white cursor-not-allowed" : "bg-green-600 text-white hover:bg-green-700"
             }`}
           >
             Next

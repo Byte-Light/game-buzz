@@ -13,16 +13,23 @@ export async function GET() {
   try {
     connection = await mysql.createConnection(dbConfig);
 
-    // Fetch game data from spgames table
+    // Fetch accessory data from all_gacc table
     const [rows] = await connection.execute(`
-      SELECT id, game_name AS name, release_date, developer, publisher, genre, platform, rating, price, image, description
-      FROM spgames
+      SELECT 
+        accessory_name AS name, 
+        category, 
+        brand, 
+        price, 
+        image, 
+        description, 
+        afflink 
+      FROM all_gacc
     `);
 
     return NextResponse.json(rows);
   } catch (error) {
     console.error('Database connection error:', error);
-    return NextResponse.json({ error: 'Failed to load smartphone games data' }, { status: 500 });
+    return NextResponse.json({ error: 'Failed to load accessory data' }, { status: 500 });
   } finally {
     if (connection) {
       await connection.end();

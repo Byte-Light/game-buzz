@@ -20,7 +20,7 @@ const SmartphoneAccessories: React.FC = () => {
   useEffect(() => {
     const fetchAccessories = async () => {
       try {
-        const response = await fetch("/api/accessory");
+        const response = await fetch("/api/top-accessory");
         if (!response.ok) {
           throw new Error("Failed to fetch accessories data");
         }
