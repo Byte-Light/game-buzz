@@ -9,7 +9,7 @@ const About: React.FC = () => {
         <section className="mb-12">
           <h2 className="text-2xl font-semibold text-gray-800 mb-4">Our Mission</h2>
           <p className="text-gray-700 leading-relaxed">
-            At GameBuzz, our mission is to bring gamers together by providing comprehensive information about the latest and greatest games across platforms. Whether you're into PC, smartphone, or console gaming, we aim to be your go-to source for game reviews, updates, and recommendations.
+            At GameBuzz,our mission is to bring gamers together by providing comprehensive information about the latest and greatest games across platforms. Whether you're into PC, smartphone, or console gaming, we aim to be your go-to source for game reviews, updates, and recommendations.
           </p>
         </section>
 
