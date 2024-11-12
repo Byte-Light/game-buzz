@@ -53,7 +53,7 @@ const PcGames: React.FC = () => {
   return (
     <div className="bg-gradient-to-b from-blue-50 to-gray-100 min-h-screen py-10">
       <div className="container mx-auto px-4">
-        <h2 className="text-4xl font-bold text-center mb-8 text-indigo-700">Top PC Games</h2>
+        <h2 className="text-4xl font-bold text-center mb-8 text-indigo-700">Video Games Top Chart</h2>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {games.map((game) => (
             <div

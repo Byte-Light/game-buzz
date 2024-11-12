@@ -45,7 +45,7 @@ const SmartphoneAccessories: React.FC = () => {
   return (
     <div className="bg-gradient-to-b from-green-50 to-gray-100 min-h-screen py-10">
       <div className="container mx-auto px-4">
-        <h2 className="text-4xl font-bold text-center mb-8 text-green-700">Top Smartphone Accessories</h2>
+        <h2 className="text-4xl font-bold text-center mb-8 text-green-700">Latest Accessories</h2>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {accessories.map((accessory) => (
             <div

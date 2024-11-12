@@ -33,7 +33,7 @@ const Navbar = () => {
 
         {/* Navigation Links */}
         <div className="hidden md:flex space-x-6">
-          {['Home', 'PC Games', 'Smartphone Games', 'Console Games', 'About'].map((link, index) => (
+          {['Home', 'Video Games', 'Accessories', 'About'].map((link, index) => (
             <Link key={index} href={link === 'Home' ? '/' : `/${link.toLowerCase().replace(/\s/g, '-')}`}>
               <span className="px-4 py-2 text-white font-semibold bg-gradient-to-r from-purple-500 to-pink-500 hover:from-teal-400 hover:to-blue-500 rounded-full transition-transform transform hover:scale-105 duration-300 shadow-md">
                 {link}

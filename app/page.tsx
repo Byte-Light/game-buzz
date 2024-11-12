@@ -1,13 +1,12 @@
-import ConsoleGames from "@/components/home/ConsoleGames";
-import PcGames from "@/components/home/PcGames";
-import SmartphoneGames from "@/components/home/SmartphoneGames";
+import NewAccessories from "@/components/home/NewAccessories";
+import TopVideoGame from "@/components/home/TopVideoGame";
+
 
 export default function Home() {
   return (
     <div>
-      <PcGames />
-      <SmartphoneGames />
-      <ConsoleGames />
+      <TopVideoGame />
+      <NewAccessories />
     </div>
   );
 }

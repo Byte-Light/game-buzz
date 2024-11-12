@@ -16,7 +16,7 @@ type Game = {
   description: string;    // New field for description
 };
 
-const AllPcGames: React.FC = () => {
+const AllVideoGames: React.FC = () => {
   const [games, setGames] = useState<Game[]>([]);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
@@ -70,7 +70,7 @@ const AllPcGames: React.FC = () => {
   return (
     <div className="bg-gradient-to-b from-blue-50 to-gray-100 min-h-screen py-10">
       <div className="container mx-auto px-4">
-        <h2 className="text-4xl font-bold text-center mb-8 text-indigo-700">Top PC Games</h2>
+        <h2 className="text-4xl font-bold text-center mb-8 text-indigo-700">All Video Games</h2>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {visibleGames.map((game) => (
             <div key={game.id} className="bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300 transform hover:scale-105">
@@ -124,4 +124,4 @@ const AllPcGames: React.FC = () => {
   );
 };
 
-export default AllPcGames;
+export default AllVideoGames;
