@@ -16,7 +16,7 @@ type Game = {
   description: string;
 };
 
-const PcGames: React.FC = () => {
+const TopVideoGame: React.FC = () => {
   const [games, setGames] = useState<Game[]>([]);
   const [error, setError] = useState<string | null>(null);
   const router = useRouter();
@@ -90,4 +90,4 @@ const PcGames: React.FC = () => {
   );
 };
 
-export default PcGames;
+export default TopVideoGame;

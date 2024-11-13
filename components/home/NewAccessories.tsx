@@ -12,7 +12,7 @@ type Accessory = {
   description: string;
 };
 
-const SmartphoneAccessories: React.FC = () => {
+const NewAccessories: React.FC = () => {
   const [accessories, setAccessories] = useState<Accessory[]>([]);
   const [error, setError] = useState<string | null>(null);
   const router = useRouter();
@@ -85,4 +85,4 @@ const SmartphoneAccessories: React.FC = () => {
   );
 };
 
-export default SmartphoneAccessories;
+export default NewAccessories;
