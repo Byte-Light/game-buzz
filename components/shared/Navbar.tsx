@@ -1,9 +1,54 @@
 "use client";
+
 import Link from 'next/link';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+
+// Define SearchResult interface
+interface SearchResult {
+  id: number;
+  name: string;
+  type: 'game' | 'accessory';
+  key: string;
+  release_date?: string; // Optional for games
+  category?: string;     // Optional for accessories
+  price?: number;
+  image?: string;
+}
 
 const Navbar = () => {
   const [isHovered, setIsHovered] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    if (!searchQuery.trim()) {
+      setSearchResults([]);
+      return;
+    }
+
+    const timeoutId = setTimeout(async () => {
+      setIsLoading(true);
+      try {
+        const response = await fetch(`/api/search?query=${encodeURIComponent(searchQuery)}`);
+        const data = await response.json();
+
+        if (response.ok) {
+          setSearchResults(data);
+        } else {
+          console.error('Error fetching search results:', data.error);
+          setSearchResults([]);
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        setSearchResults([]);
+      } finally {
+        setIsLoading(false);
+      }
+    }, 300); // 300ms debounce delay
+
+    return () => clearTimeout(timeoutId);
+  }, [searchQuery]);
 
   return (
     <nav className="bg-gradient-to-r from-blue-500 via-purple-600 to-pink-600 shadow-lg sticky top-0 z-50">
@@ -24,12 +69,43 @@ const Navbar = () => {
         >
           <input
             type="text"
-            placeholder="Search games..."
+            placeholder="Search games or accessories..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
             className={`absolute left-4 top-0 w-full h-full pl-4 pr-4 text-white placeholder-gray-200 bg-transparent outline-none rounded-full transition-opacity duration-300 ${
               isHovered ? "opacity-100 cursor-text" : "opacity-0 cursor-pointer"
             }`}
           />
         </div>
+
+        {/* Search Results Dropdown */}
+        {searchQuery.trim() && (
+          <div className="absolute top-16 left-1/2 transform -translate-x-1/2 bg-white shadow-lg rounded-md w-80 max-h-64 overflow-y-auto z-50">
+            {isLoading ? (
+              <div className="p-4 text-center text-gray-500">Loading...</div>
+            ) : searchResults.length > 0 ? (
+              searchResults.map((result) => (
+                <Link
+                  key={result.key}
+                  href={result.type === 'game' ? `/games/${result.id}` : `/accessories/${result.id}`}
+                  className="block px-4 py-2 hover:bg-gray-100"
+                >
+                  <div className="flex items-center space-x-4">
+                    <img src={result.image} alt={result.name} className="w-10 h-10 rounded" />
+                    <div>
+                      <h3 className="font-medium text-gray-700">{result.name}</h3>
+                      <p className="text-sm text-gray-500">
+                        {result.type === 'game' ? result.release_date : result.category}
+                      </p>
+                    </div>
+                  </div>
+                </Link>
+              ))
+            ) : (
+              <div className="p-4 text-center text-gray-500">No results found</div>
+            )}
+          </div>
+        )}
 
         {/* Navigation Links */}
         <div className="hidden md:flex space-x-6">
